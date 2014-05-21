@@ -151,6 +151,22 @@ while (1) {
 
 
 # Step 3 of 3: Print the hash array out to a file in the correct format 
+# sec,     # seconds of minutes from 0 to 61
+# min,     # minutes of hour from 0 to 59
+# hour,    # hours of day from 0 to 24
+# mday,    # day of month from 1 to 31
+# mon,     # month of year from 0 to 11
+# year,    # year since 1900
+# wday,    # days since sunday
+# yday,    # days since January 1st
+# isdst    # hours of daylight savings time
+my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+print "USER:            raymond\n";
+print "BUILD:           6.1\n";
+print "DESCRIPTION:     <blank>       \n";
+print "FILETYPE:        edm\n";
+print "FILENAME:        ppar_example.edm\n";
+printf ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
 print "EDMT|planet|$objectid|add|";
 while ( my ($key, $value) = each(%hash) ) {
     print "$key $value|";
