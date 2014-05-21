@@ -176,16 +176,28 @@ my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
 # gets assigned to $filename after printf has printed the string. 
 my $filename  = sprintf ("ppar_%04d-%02d-%02d-%02d-%02d-%02d.edm", $year+1900,$mon+1,$mday,$hour,$min,$sec);
 
-# Step 3c o 3: Print header information 
+# Step 3c of 3: Create file handle for the output file 
+open (my $fh, '>', $filename) or die "Could not open file '$filename' $!\n";
+
+# Step 3d o 3: Print header information 
 print "USER:            raymond\n";
+print $fh "USER:            raymond\n";
 print "BUILD:           6.1\n";
+print $fh "BUILD:           6.1\n";
 printf ("DESCRIPTION:     %s\n", $description);
+printf $fh ("DESCRIPTION:     %s\n", $description);
 print "FILETYPE:        edm\n";
+print $fh "FILETYPE:        edm\n";
 printf ("FILENAME:        %s\n", $filename);
+printf $fh ("FILENAME:        %s\n", $filename);
 printf ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
+printf $fh ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
+
+# Step 3e of 3: Now output all the planet parameters 
 print "EDMT|planet|$objectid|add|";
 while ( my ($key, $value) = each(%hash) ) {
     print "$key $value|";
+    print $fh "$key $value|";
 }
 print "\n"; # need to use this so the command prompt displays correctly 
 
