@@ -118,6 +118,12 @@ my $objectid = <STDIN>;
 chomp $objectid;
 
 
+# Step 2b of 3: Prompt the user to enter short description of updated planet parameters
+print 'Enter planet parameter description: ';
+my $description = <STDIN>;
+chomp $description;
+
+
 # Step 2b of 3: Prompt the user to enter a key and corresponding value 
 # (do this in an infinite WHILE-loop; type 'quit' to get out of loop)
 while (1) {
@@ -163,7 +169,7 @@ while (1) {
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
 print "USER:            raymond\n";
 print "BUILD:           6.1\n";
-print "DESCRIPTION:     <blank>       \n";
+printf ("DESCRIPTION:     %s\n", $description);
 print "FILETYPE:        edm\n";
 print "FILENAME:        ppar_example.edm\n";
 printf ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
