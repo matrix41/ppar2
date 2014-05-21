@@ -12,6 +12,7 @@ my $value;
 
 
 # Step 1 of 3: Initialize the hash and tie it (ie to preserve insertion order)
+# note to self: awk '{printf "$hash{%s} = null;\n", $1 }' input.txt
 tie my %hash, "Tie::IxHash" or die "could not tie %hash";
 
 $hash{plnorbper} = 'null';
@@ -111,7 +112,13 @@ $hash{plnblend} = 'null';
 $hash{plnrefid} = 'null';
 
 
-# Step 2 of 3: Prompt the user to enter a key and corresponding value 
+# Step 2a of 3: Prompt the user to enter Object ID
+print 'Enter Object ID: ';
+my $objectid = <STDIN>;
+chomp $objectid;
+
+
+# Step 2b of 3: Prompt the user to enter a key and corresponding value 
 # (do this in an infinite WHILE-loop; type 'quit' to get out of loop)
 while (1) {
     print 'Enter key and value pair (separated by a space); enter \'quit\' to exit) =>';
@@ -136,14 +143,15 @@ while (1) {
         }
     }
     if ( $match == 0 ) {
-        print "No match found for input key.\n";
-        print 'User input key: ', $inputkey, "\n";
+        print "\n";
+        print "No match found for input key: $inputkey\n";
+        print "\n";
     }
 } # end of infinite outer WHILE-loop
 
 
 # Step 3 of 3: Print the hash array out to a file in the correct format 
-print "EDMT|planet|<replace with OBJECTID>|add|";
+print "EDMT|planet|$objectid|add|";
 while ( my ($key, $value) = each(%hash) ) {
     print "$key $value|";
 }
