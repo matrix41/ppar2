@@ -157,6 +157,8 @@ while (1) {
 
 
 # Step 3 of 3: Print the hash array out to a file in the correct format 
+
+# Step 3a of 3: Parse time and date 
 # sec,     # seconds of minutes from 0 to 61
 # min,     # minutes of hour from 0 to 59
 # hour,    # hours of day from 0 to 24
@@ -167,11 +169,19 @@ while (1) {
 # yday,    # days since January 1st
 # isdst    # hours of daylight savings time
 my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+
+# Step 3b of 3: Create output filename from time and date elements 
+# note to self: use sprintf, not printf. otherwise using printf will 
+# return 1 because the 1 is the true return value from printf which 
+# gets assigned to $filename after printf has printed the string. 
+my $filename  = sprintf ("ppar_%04d-%02d-%02d-%02d-%02d-%02d.edm", $year+1900,$mon+1,$mday,$hour,$min,$sec);
+
+# Step 3c o 3: Print header information 
 print "USER:            raymond\n";
 print "BUILD:           6.1\n";
 printf ("DESCRIPTION:     %s\n", $description);
 print "FILETYPE:        edm\n";
-print "FILENAME:        ppar_example.edm\n";
+printf ("FILENAME:        %s\n", $filename);
 printf ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
 print "EDMT|planet|$objectid|add|";
 while ( my ($key, $value) = each(%hash) ) {
