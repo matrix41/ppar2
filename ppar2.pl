@@ -124,7 +124,7 @@ my $description = <STDIN>;
 chomp $description;
 
 
-# Step 2b of 3: Prompt the user to enter a key and corresponding value 
+# Step 2c of 3: Prompt the user to enter a key and corresponding value 
 # (do this in an infinite WHILE-loop; type 'quit' to get out of loop)
 while (1) {
     print 'Enter key and value pair (separated by a space); enter \'quit\' to exit) =>';
@@ -143,11 +143,11 @@ while (1) {
                    # 0 == no match ; 1 == match 
     while ( ($key, $value) = each(%hash) ) {
 #       if ( $inputkey =~ $key  ) { # NO!! This does not do an exact match.
-        if ( $inputkey =~ /^$key$/ ) {
+        if ( $inputkey =~ /^$key$/ ) { # YES. This will do an exact match.
             $hash{ $inputkey } = $inputvalue;
             $match = 1; 
         }
-    }
+    } # end of inner WHILE-loop 
     if ( $match == 0 ) {
         print "\n";
         print "No match found for input key: $inputkey\n";
@@ -156,7 +156,7 @@ while (1) {
 } # end of infinite outer WHILE-loop
 
 
-# Step 3 of 3: Print the hash array out to a file in the correct format 
+# Step 3 of 3: Print the hash function out to a file in the correct format 
 
 # Step 3a of 3: Parse time and date 
 # sec,     # seconds of minutes from 0 to 61
@@ -179,21 +179,23 @@ my $filename  = sprintf ("ppar_%04d-%02d-%02d-%02d-%02d-%02d.edm", $year+1900,$m
 # Step 3c of 3: Create file handle for the output file 
 open (my $fh, '>', $filename) or die "Could not open file '$filename' $!\n";
 
-# Step 3d o 3: Print header information 
-print "USER:            raymond\n";
-print $fh "USER:            raymond\n";
-print "BUILD:           6.1\n";
-print $fh "BUILD:           6.1\n";
+# Step 3d of 3: Print header information to screen 
+print   "USER:            raymond\n";
+print   "BUILD:           6.1\n";
 printf ("DESCRIPTION:     %s\n", $description);
-printf $fh ("DESCRIPTION:     %s\n", $description);
-print "FILETYPE:        edm\n";
-print $fh "FILETYPE:        edm\n";
+print   "FILETYPE:        edm\n";
 printf ("FILENAME:        %s\n", $filename);
-printf $fh ("FILENAME:        %s\n", $filename);
 printf ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
+
+# Step 3e of 3: Print header information to file 
+print  $fh  "USER:            raymond\n";
+print  $fh  "BUILD:           6.1\n";
+printf $fh ("DESCRIPTION:     %s\n", $description);
+print  $fh  "FILETYPE:        edm\n";
+printf $fh ("FILENAME:        %s\n", $filename);
 printf $fh ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
 
-# Step 3e of 3: Now output all the planet parameters 
+# Step 3f of 3: Now output all the planet parameters 
 print "EDMT|planet|$objectid|add|";
 print $fh "EDMT|planet|$objectid|add|";
 while ( my ($key, $value) = each(%hash) ) {
