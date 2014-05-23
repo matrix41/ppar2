@@ -195,6 +195,7 @@ printf $fh ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+
 
 # Step 3e of 3: Now output all the planet parameters 
 print "EDMT|planet|$objectid|add|";
+print $fh "EDMT|planet|$objectid|add|";
 while ( my ($key, $value) = each(%hash) ) {
     print "$key $value|";
     print $fh "$key $value|";
