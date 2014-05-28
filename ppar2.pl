@@ -1,7 +1,6 @@
 #!/usr/bin/perl -w
 use strict;
 use warnings;
-use feature qw(switch say);
 
 use Tie::IxHash;
 
@@ -10,8 +9,6 @@ my $inputkey;
 my $key;
 my $inputvalue;
 my $value;
-my $inputmethod;
-my $method;
 
 
 # Step 1 of 3: Initialize the hash and tie it (ie to preserve insertion order)
@@ -194,24 +191,7 @@ my $description = <STDIN>;
 chomp $description;
 
 
-# Step 2c of 3: Prompt the user to select the input method 
-print "Select the input method (a-d): \n";
-print "a) add_def    \n";
-print "b) add        \n";
-print "c) update_def \n";
-print "d) update     \n";
-$inputmethod = <STDIN>;
-chomp $inputmethod;
-given ($inputmethod) { 
-    when ('a') {$method = 'add_def'   } 
-    when ('b') {$method = 'add'       } 
-    when ('c') {$method = 'update_def'} 
-    when ('d') {$method = 'update'    } 
-    default    {die "\n\nNo matching case\n" }
-}
-
-
-# Step 2d of 3: Prompt the user to enter a key and corresponding value 
+# Step 2c of 3: Prompt the user to enter a key and corresponding value 
 # (do this in an infinite WHILE-loop; type 'quit' to get out of loop)
 while (1) {
     print 'Enter key and value pair (separated by a space); enter \'quit\' to exit) =>';
@@ -283,8 +263,8 @@ printf $fh ("FILENAME:        %s\n", $filename);
 printf $fh ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
 
 # Step 3f of 3: Now output all the planet parameters 
-print "EDMT|planet|$objectid|$method|";
-print $fh "EDMT|planet|$objectid|$method|";
+print "EDMT|planet|$objectid|add|";
+print $fh "EDMT|planet|$objectid|add|";
 while ( my ($key, $value) = each(%hash) ) {
     print "$key $value|";
     print $fh "$key $value|";
