@@ -185,13 +185,19 @@ my $objectid = <STDIN>;
 chomp $objectid;
 
 
-# Step 2b of 3: Prompt the user to enter short description of updated planet parameters
+# Step 2b of 3: Prompt the user to pick a filename
+print 'Create name of output file: ';
+my $filename = <STDIN>;
+chomp $filename;
+
+
+# Step 2c of 3: Prompt the user to enter short description of updated planet parameters
 print 'Enter planet parameter description: ';
 my $description = <STDIN>;
 chomp $description;
 
 
-# Step 2c of 3: Prompt the user to enter a key and corresponding value 
+# Step 2d of 3: Prompt the user to enter a key and corresponding value 
 # (do this in an infinite WHILE-loop; type 'quit' to get out of loop)
 while (1) {
     print 'Enter key and value pair (separated by a space); enter \'quit\' to exit) =>';
@@ -241,7 +247,7 @@ my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
 # note to self: use sprintf, not printf. otherwise using printf will 
 # return 1 because the 1 is the true return value from printf which 
 # gets assigned to $filename after printf has printed the string. 
-my $filename  = sprintf ("ppar_%04d-%02d-%02d-%02d-%02d-%02d.edm", $year+1900,$mon+1,$mday,$hour,$min,$sec);
+# my $filename  = sprintf ("ppar_%04d-%02d-%02d-%02d-%02d-%02d.edm", $year+1900,$mon+1,$mday,$hour,$min,$sec);
 
 # Step 3c of 3: Create file handle for the output file 
 open (my $fh, '>', $filename) or die "Could not open file '$filename' $!\n";
