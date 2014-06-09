@@ -253,6 +253,9 @@ printf ("DESCRIPTION:     %s\n", $description);
 print   "FILETYPE:        edm\n";
 printf ("FILENAME:        %s\n", $filename);
 printf ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
+printf  "#                                            \n";
+printf  "# Addition of default planet parameter values\n";
+printf  "#                                            \n";
 
 # Step 3e of 3: Print header information to file 
 print  $fh  "USER:            raymond\n";
@@ -261,6 +264,9 @@ printf $fh ("DESCRIPTION:     %s\n", $description);
 print  $fh  "FILETYPE:        edm\n";
 printf $fh ("FILENAME:        %s\n", $filename);
 printf $fh ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
+printf $fh  "#                                            \n";
+printf $fh  "# Addition of default planet parameter values\n";
+printf $fh  "#                                            \n";
 
 # Step 3f of 3: Now output all the planet parameters 
 print "EDMT|planet|$objectid|add|";
@@ -269,7 +275,8 @@ while ( my ($key, $value) = each(%hash) ) {
     print "$key $value|";
     print $fh "$key $value|";
 }
-print "\n"; # need to use this so the command prompt displays correctly 
+print     "\n"; # need to use this so the command prompt displays correctly 
+print $fh "\n"; # need to use this so the command prompt displays correctly
 
 exit 0
 
