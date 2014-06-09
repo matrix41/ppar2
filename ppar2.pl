@@ -274,7 +274,20 @@ printf $fh  "#                                            \n";
 printf $fh  "# Addition of default planet parameter values\n";
 printf $fh  "#                                            \n";
 
-# Step 3f of 3: Now output all the planet parameters 
+
+# Step 3f of 3: Special algorithm check.  If certain specific 
+# parameters are initialized (ie not null), then calculate 
+# additional values for other related parameters.
+# if ( defined $hash_ref->{ lums } && $hash_ref->{ lums } !~ /^null$/ )
+if ( defined $hash{ plnmsinij } && $hash{ plnmsinij } !~ /^null$/ )
+{
+    $hash{ plnmsinie }     = sprintf("%.1f", $hash{ plnmsinij }     * 317.816611);
+    $hash{ plnmsinieerr1 } = sprintf("%.1f", $hash{ plnmsinijerr1 } * 317.816611);
+    $hash{ plnmsinieerr2 } = sprintf("%.1f", $hash{ plnmsinijerr2 } * 317.816611);
+}
+
+
+# Step 3g of 3: Now output all the planet parameters 
 print "EDMT|planet|$objectid|add|";
 print $fh "EDMT|planet|$objectid|add|";
 while ( my ($key, $value) = each(%hash) ) {
