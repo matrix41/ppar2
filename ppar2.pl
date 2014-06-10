@@ -193,7 +193,7 @@ print   "FILETYPE:        edm\n";
 printf ("FILENAME:        %s\n", $filename);
 printf ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
 printf  "#                                            \n";
-printf  "# Addition of default planet parameter values\n";
+printf  "# Addition of planet parameter values\n";
 printf  "#                                            \n";
 
 # Step 3e of 3: Print header information to file 
@@ -203,14 +203,14 @@ printf $fh ("DESCRIPTION:     %s\n", $description);
 print  $fh  "FILETYPE:        edm\n";
 printf $fh ("FILENAME:        %s\n", $filename);
 printf $fh ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+1,$mday,$hour,$min,$sec);
-printf $fh  "#                                            \n";
-printf $fh  "# Addition of default planet parameter values\n";
-printf $fh  "#                                            \n";
-
+printf $fh  "#                                    \n";
+printf $fh  "# Addition of planet parameter values\n";
+printf $fh  "#                                    \n";
 
 # Step 3f of 3: Special algorithm check.  If certain specific 
 # parameters are initialized (ie not null), then calculate 
 # additional values for other related parameters.
+# Special algorithm check 1: Calculate Earth mass if given Jupiter mass
 # if ( defined $hash_ref->{ lums } && $hash_ref->{ lums } !~ /^null$/ )
 if ( defined $hash{ plnmsinij } && $hash{ plnmsinij } !~ /^null$/ )
 {
