@@ -5,6 +5,7 @@ use warnings;
 use Tie::IxHash;
 
 # Define 
+my $objectid;
 my $inputkey;
 my $key;
 my $inputvalue;
@@ -113,9 +114,11 @@ $hash{plnrefid} = 'null';
 
 
 # Step 2a of 3: Prompt the user to enter Object ID
-print 'Enter Object ID: ';
-my $objectid = <STDIN>;
-chomp $objectid;
+do {
+    print 'Enter Object ID: ';
+    $objectid = <STDIN>;
+    chomp $objectid;
+} while ( $objectid !~ /\d\d\d\d\d\d\d\d/ );
 
 
 # Step 2b of 3: Prompt the user to pick a filename
