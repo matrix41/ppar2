@@ -213,6 +213,7 @@ printf $fh  "#                                    \n";
 # Step 3f of 3: Special algorithm check.  If certain specific 
 # parameters are initialized (ie not null), then calculate 
 # additional values for other related parameters.
+
 # Special algorithm check 1: Calculate Earth mass if given Jupiter mass
 # if ( defined $hash_ref->{ lums } && $hash_ref->{ lums } !~ /^null$/ )
 if ( defined $hash{ plnmsinij } && $hash{ plnmsinij } !~ /^null$/ )
@@ -220,6 +221,22 @@ if ( defined $hash{ plnmsinij } && $hash{ plnmsinij } !~ /^null$/ )
     $hash{ plnmsinie }     = sprintf("%.1f", $hash{ plnmsinij }     * 317.816611);
     $hash{ plnmsinieerr1 } = sprintf("%.1f", $hash{ plnmsinijerr1 } * 317.816611);
     $hash{ plnmsinieerr2 } = sprintf("%.1f", $hash{ plnmsinijerr2 } * 317.816611);
+}
+
+# Special algorithm check 2: Calculate Earth radius if given Jupiter radius
+if ( defined $hash{ plnradj } && $hash{ plnradj } !~ /^null$/ )
+{
+    $hash{ plnrade }     = sprintf("%.1f", $hash{ plnradj }         * 11.2089807);
+    $hash{ plnradeerr1 } = sprintf("%.1f", $hash{ plnradjerr1 }     * 11.2089807);
+    $hash{ plnradeerr2 } = sprintf("%.1f", $hash{ plnradjerr2 }     * 11.2089807);
+}
+
+# Special algorithm check 3: Calculate Solar radius if given Jupiter radius
+if ( defined $hash{ plnradj } && $hash{ plnradj } !~ /^null$/ )
+{
+    $hash{ plnrads }     = sprintf("%.1f", $hash{ plnradj }         * 0.102792236);
+    $hash{ plnradserr1 } = sprintf("%.1f", $hash{ plnradjerr1 }     * 0.102792236);
+    $hash{ plnradserr2 } = sprintf("%.1f", $hash{ plnradjerr2 }     * 0.102792236);
 }
 
 
