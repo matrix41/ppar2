@@ -219,26 +219,55 @@ printf $fh  "#                                    \n";
 if ( defined $hash{ plnmsinij } && $hash{ plnmsinij } !~ /^null$/ )
 {
     $hash{ plnmsinie }     = sprintf("%.1f", $hash{ plnmsinij }     * 317.816611);
+}
+
+# Special algorithm check 2: Calculate Earth mass upper error if given Jupiter mass upper error
+if ( defined $hash{ plnmsinijerr1 } && $hash{ plnmsinijerr1 } !~ /^null$/ )
+{
     $hash{ plnmsinieerr1 } = sprintf("%.1f", $hash{ plnmsinijerr1 } * 317.816611);
+}
+
+# Special algorithm check 3: Calculate Earth mass lower error if given Jupiter mass lower error
+if ( defined $hash{ plnmsinijerr2 } && $hash{ plnmsinijerr2 } !~ /^null$/ )
+{
     $hash{ plnmsinieerr2 } = sprintf("%.1f", $hash{ plnmsinijerr2 } * 317.816611);
 }
 
-# Special algorithm check 2: Calculate Earth radius if given Jupiter radius
+# Special algorithm check 4: Calculate Earth radius if given Jupiter radius
 if ( defined $hash{ plnradj } && $hash{ plnradj } !~ /^null$/ )
 {
     $hash{ plnrade }     = sprintf("%.1f", $hash{ plnradj }         * 11.2089807);
+}
+
+# Special algorithm check 5: Calculate Earth radius upper error if given Jupiter radius upper error 
+if ( defined $hash{ plnradjerr1 } && $hash{ plnradjerr1 } !~ /^null$/ )
+{
     $hash{ plnradeerr1 } = sprintf("%.1f", $hash{ plnradjerr1 }     * 11.2089807);
+}
+
+# Special algorithm check 6: Calculate Earth radius lower error if given Jupiter radius lower error 
+if ( defined $hash{ plnradjerr2 } && $hash{ plnradjerr2 } !~ /^null$/ )
+{
     $hash{ plnradeerr2 } = sprintf("%.1f", $hash{ plnradjerr2 }     * 11.2089807);
 }
 
-# Special algorithm check 3: Calculate Solar radius if given Jupiter radius
+# Special algorithm check 7: Calculate Solar radius if given Jupiter radius 
 if ( defined $hash{ plnradj } && $hash{ plnradj } !~ /^null$/ )
 {
     $hash{ plnrads }     = sprintf("%.1f", $hash{ plnradj }         * 0.102792236);
-    $hash{ plnradserr1 } = sprintf("%.1f", $hash{ plnradjerr1 }     * 0.102792236);
-    $hash{ plnradserr2 } = sprintf("%.1f", $hash{ plnradjerr2 }     * 0.102792236);
 }
 
+# Special algorithm check 8: Calculate Solar radius upper error if given Jupiter radius uppper error 
+if ( defined $hash{ plnradjerr1 } && $hash{ plnradjerr1 } !~ /^null$/ )
+{
+    $hash{ plnradserr1 } = sprintf("%.1f", $hash{ plnradjerr1 }     * 0.102792236);
+}
+
+# Special algorithm check 9: Calculate Solar radius lower error if given Jupiter radius lower error 
+if ( defined $hash{ plnradjerr2 } && $hash{ plnradjerr2 } !~ /^null$/ )
+{
+    $hash{ plnradserr2 } = sprintf("%.1f", $hash{ plnradjerr2 }     * 0.102792236);
+}
 
 # Step 3g of 3: Now output all the planet parameters 
 print "EDMT|planet|$objectid|add|";
