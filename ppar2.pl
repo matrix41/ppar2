@@ -221,55 +221,82 @@ printf $fh  "#                                    \n";
 # if ( defined $hash_ref->{ lums } && $hash_ref->{ lums } !~ /^null$/ )
 if ( defined $hash{ plnmsinij } && $hash{ plnmsinij } !~ /^null$/ )
 {
-    $hash{ plnmsinie }     = sprintf("%.1f", $hash{ plnmsinij }     * $J2Emass);
+    my $howmanyA = length( $hash{ plnmsinij } );
+    my $howmanyB = length( int( $hash{ plnmsinij } ) );
+    my $sigdig = $howmanyA - $howmanyB - 1;
+    $hash{ plnmsinie }     = sprintf("%.${sigdig}f", $hash{ plnmsinij }     * $J2Emass);
 }
 
 # Special algorithm check 2: Calculate Earth mass upper error if given Jupiter mass upper error
 if ( defined $hash{ plnmsinijerr1 } && $hash{ plnmsinijerr1 } !~ /^null$/ )
 {
-    $hash{ plnmsinieerr1 } = sprintf("%.1f", $hash{ plnmsinijerr1 } * $J2Emass);
+    my $howmanyA = length( $hash{ plnmsinijerr1 } );
+    my $howmanyB = length( int( $hash{ plnmsinijerr1 } ) );
+    my $sigdig = $howmanyA - $howmanyB - 1;
+    $hash{ plnmsinieerr1 } = sprintf("%.${sigdig}f", $hash{ plnmsinijerr1 } * $J2Emass);
 }
 
 # Special algorithm check 3: Calculate Earth mass lower error if given Jupiter mass lower error
 if ( defined $hash{ plnmsinijerr2 } && $hash{ plnmsinijerr2 } !~ /^null$/ )
 {
-    $hash{ plnmsinieerr2 } = sprintf("%.1f", $hash{ plnmsinijerr2 } * $J2Emass);
+    my $howmanyA = length( $hash{ plnmsinijerr2 } );
+    my $howmanyB = length( int( $hash{ plnmsinijerr2 } ) );
+    my $sigdig = $howmanyA - $howmanyB - 2; # it is minus 2 because I need to account for negative sign 
+    $hash{ plnmsinieerr2 } = sprintf("%.${sigdig}f", $hash{ plnmsinijerr2 } * $J2Emass);
 }
 
 # Special algorithm check 4: Calculate Earth radius if given Jupiter radius
 if ( defined $hash{ plnradj } && $hash{ plnradj } !~ /^null$/ )
 {
-    $hash{ plnrade }     = sprintf("%.1f", $hash{ plnradj }         * $J2Eradius);
+    my $howmanyA = length ( $hash{ plnradj } );
+    my $howmanyB = length ( int( $hash{ plnradj }) );
+    my $sigdig = $howmanyA - $howmanyB - 1;
+    $hash{ plnrade }     = sprintf("%.${sigdig}f", $hash{ plnradj }         * $J2Eradius);
 }
 
 # Special algorithm check 5: Calculate Earth radius upper error if given Jupiter radius upper error 
 if ( defined $hash{ plnradjerr1 } && $hash{ plnradjerr1 } !~ /^null$/ )
 {
-    $hash{ plnradeerr1 } = sprintf("%.1f", $hash{ plnradjerr1 }     * $J2Eradius);
+    my $howmanyA = length ( $hash{ plnradjerr1 } );
+    my $howmanyB = length ( int( $hash{ plnradjerr1 }) );
+    my $sigdig = $howmanyA - $howmanyB - 1;
+    $hash{ plnradeerr1 } = sprintf("%.${sigdig}f", $hash{ plnradjerr1 }     * $J2Eradius);
 }
 
 # Special algorithm check 6: Calculate Earth radius lower error if given Jupiter radius lower error 
 if ( defined $hash{ plnradjerr2 } && $hash{ plnradjerr2 } !~ /^null$/ )
 {
-    $hash{ plnradeerr2 } = sprintf("%.1f", $hash{ plnradjerr2 }     * $J2Eradius);
+    my $howmanyA = length ( $hash{ plnradjerr2 } );
+    my $howmanyB = length ( int( $hash{ plnradjerr2 }) );
+    my $sigdig = $howmanyA - $howmanyB - 2; # it is minus 2 because I need to account for negative sign 
+    $hash{ plnradeerr2 } = sprintf("%.${sigdig}f", $hash{ plnradjerr2 }     * $J2Eradius);
 }
 
 # Special algorithm check 7: Calculate Solar radius if given Jupiter radius 
 if ( defined $hash{ plnradj } && $hash{ plnradj } !~ /^null$/ )
 {
-    $hash{ plnrads }     = sprintf("%.1f", $hash{ plnradj }         * $J2Sradius);
+    my $howmanyA = length ( $hash{ plnradj } );
+    my $howmanyB = length ( int( $hash{ plnradj } ) );
+    my $sigdig = $howmanyA - $howmanyB - 1;
+    $hash{ plnrads }     = sprintf("%.${sigdig}f", $hash{ plnradj }         * $J2Sradius);
 }
 
 # Special algorithm check 8: Calculate Solar radius upper error if given Jupiter radius uppper error 
 if ( defined $hash{ plnradjerr1 } && $hash{ plnradjerr1 } !~ /^null$/ )
 {
-    $hash{ plnradserr1 } = sprintf("%.1f", $hash{ plnradjerr1 }     * $J2Sradius);
+    my $howmanyA = length ( $hash{ plnradjerr1 } );
+    my $howmanyB = length ( int( $hash{ plnradjerr1 } ) );
+    my $sigdig = $howmanyA - $howmanyB - 1;
+    $hash{ plnradserr1 } = sprintf("%.${sigdig}f", $hash{ plnradjerr1 }     * $J2Sradius);
 }
 
 # Special algorithm check 9: Calculate Solar radius lower error if given Jupiter radius lower error 
 if ( defined $hash{ plnradjerr2 } && $hash{ plnradjerr2 } !~ /^null$/ )
 {
-    $hash{ plnradserr2 } = sprintf("%.1f", $hash{ plnradjerr2 }     * $J2Sradius);
+    my $howmanyA = length ( $hash{ plnradjerr2 } );
+    my $howmanyB = length ( int( $hash{ plnradjerr2 } ) );
+    my $sigdig = $howmanyA - $howmanyB - 2; # it is minus 2 because I need to account for negative sign 
+    $hash{ plnradserr2 } = sprintf("%.${sigdig}f", $hash{ plnradjerr2 }     * $J2Sradius);
 }
 
 # Step 3g of 3: Now output all the planet parameters 
