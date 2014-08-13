@@ -139,8 +139,7 @@ chomp $filename;
 # Step 2d of 3: Prompt the user to enter a key and corresponding value 
 # (do this in an infinite WHILE-loop; type 'quit' to get out of loop)
 while (1) {
-    print 'Enter key and value pair (separated by a space); enter \'quit\' to exit) =>';
-    print "\n";
+    print 'Enter key and value pair (separated by a space); enter \'quit\' to exit) => ';
     my $str = <STDIN>;
     chomp $str;
     ( $inputkey, $inputvalue ) = split / /, $str;
