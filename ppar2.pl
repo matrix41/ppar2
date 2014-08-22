@@ -298,6 +298,59 @@ if ( defined $hash{ plnradjerr2 } && $hash{ plnradjerr2 } !~ /^null$/ )
     $hash{ plnradserr2 } = sprintf("%.${sigdig}f", $hash{ plnradjerr2 }     * $J2Sradius);
 }
 
+
+my @messageArray; # this array will hold all the messages indicating which 
+                  # parameter fields were auto-filled. 
+
+# Special autofill algorithm.  The limit flag for the corresponding parameter 
+# field in array @myNames will be auto-filled with "0" if that parameter field 
+# is not null. 
+my @myNames = ('plnorbsmax', 'plnorbper', 'plnorbtper', 'plnorblper', 'plnorbeccen', 'plnrvamp');
+foreach (@myNames) 
+{
+# This IF-block will check 1.) that the parameter field has been filled by a real 
+# number (e.g. no longer null), and 2.) whether or not the corresponding limit flag 
+# is still null.  If the limit flag is still null, then that means I forgot to set 
+# it and the algorithm will automatically set it for me.  
+  if ( $hash{ $_ } !~ /^null$/ && $hash{ $_.'lim' } =~ /^null$/ )
+  {
+    $hash{ $_.'lim' } = 0;
+    my $tempname = "$_".'lim';
+#    print "\n$tempname was autofilled with 0\n";
+    push( @messageArray, "$tempname was autofilled with 0" );
+  }
+} 
+
+# Special autofill algorithm 2: Autofill plnmsinilim
+# (This is soooooooo stupid.  The parameter -- plnmsinij -- is an annoying parameter.  
+#  I cannot simply concatenate 'lim' to the end of it to create the limit flag for 
+#  this parameter.  The correct name for the plnmsinij limit flag is plnmsinilim, not 
+#  plnmsinijlim.  So I cannot include it in the FOREACH loop above and have to break 
+#  it out into its own separate IF block.)
+if ( $hash{ plnmsinij } !~ /^null$/ && $hash{ plnmsinilim } =~ /^null$/ )
+{
+  $hash{ plnmsinilim } = 0;
+#  print "\nplnmsinilim was autofilled with 0\n";
+  push( @messageArray, "nplnmsinilim was autofilled with 0" );
+}
+
+# Special autofill algorithm 3: Autofill plnblend  
+if ( $hash{ plnblend } =~ /^null$/ )
+{
+  $hash{ plnblend } = 0;
+#  print "\nplnblend was autofilled with 0\n";
+  push( @messageArray, "plnblend was autofilled with 0" );
+}
+
+# Special autofill algorithm 4: Autofill plnorbmethod
+if ( $hash{ plnorbmethod } =~ /^null$/ )
+{
+  $hash{ plnorbmethod } = 'rv';
+#  print "\nplnorbmethod was autofilled with rv\n";
+  push( @messageArray, "plnorbmethod was autofilled with rv" );
+}
+
+
 # Step 3g of 3: Now output all the planet parameters 
 print "EDMT|planet|$objectid|add|";
 print $fh "EDMT|planet|$objectid|add|";
@@ -308,5 +361,13 @@ while ( my ($key, $value) = each(%hash) ) {
 print     "\n"; # need to use this so the command prompt displays correctly 
 print $fh "\n"; # need to use this so the command prompt displays correctly
 
-exit 0
 
+# Step 3h of 3: Print all the messages for the fields that were autofilled. 
+print "\n\n";
+for ( my $i = 0 ; $i <= $#messageArray ; $i++ )
+{
+  print "$messageArray[$i]\n";
+}
+print "\n\n";
+
+exit 0
