@@ -13,7 +13,6 @@ my $value;
 my $J2Emass = 317.816611; # Jupiter mass to earth masss conversion factor 
 my $J2Eradius = 11.2089807; # Jupiter radius to earth radius conversion factor 
 my $J2Sradius = 0.102792236; # Jupiter radius to solar radius conversion factor 
-my $togglemass = "";
 
 
 # Step 1 of 3: Initialize the hash and tie it (ie to preserve insertion order)
@@ -221,25 +220,9 @@ printf $fh  "#                                    \n";
 # a.) Jupiter mass --> Earth mass
 # b.) Earth mass --> Jupiter mass
 
-# if ( defined $hash{ plnmsinij } && $hash{ plnmsinij } !~ /^null$/)
-# {
-#     $togglemass = "Jupiter"; # set $togglemass to indicate you want to convert from Jupiter mass --> Earth mass
-# }
-# elsif ( defined $hash{ plnmsinie } && $hash{ plnmsinie } !~ /^null$/ )
-# {
-#     $togglemass = "Earth"; # set $togglemass to indicate you want to convert from Earth mass --> Jupiter mass 
-# }
-# else
-# {
-#     $togglemass = "blank"; # set $togglemass to empty string 
-# }
-# print "\ntogglemass is $togglemass\n";
-
-
 # Special algorithm check 1: Calculate Earth mass if given Jupiter mass
 # if ( defined $hash_ref->{ lums } && $hash_ref->{ lums } !~ /^null$/ )
 if ( defined $hash{ plnmsinij } && $hash{ plnmsinij } !~ /^null$/ )
-# if ( $togglemass =~ /Jupiter/ )
 {
     my $howmanyA = length( $hash{ plnmsinij } );
     my $howmanyB = length( int( $hash{ plnmsinij } ) );
@@ -247,7 +230,6 @@ if ( defined $hash{ plnmsinij } && $hash{ plnmsinij } !~ /^null$/ )
     $hash{ plnmsinie }     = sprintf("%.${sigdig}f", $hash{ plnmsinij }     * $J2Emass);
 }
 elsif ( defined $hash{ plnmsinie } && $hash{ plnmsinie } !~ /^null$/ )
-# elsif ( $togglemass =~ /Earth/ )
 {
     my $howmanyA = length( $hash{ plnmsinie } );
     my $howmanyB = length( int( $hash{ plnmsinie } ) );
