@@ -473,6 +473,108 @@ if ( defined $hash{ plnradjerr2 } && $hash{ plnradjerr2 } !~ /^null$/ )
     $hash{ plnradserr2 } = sprintf("%.${sigdig}f", $hash{ plnradjerr2 }     * $J2Sradius);
 }
 
+# Special algorithm check 10: Calculate Earth mass if given Jupiter mass, and vice versa 
+if ( defined $hash{ plnmassj } && $hash{ plnmassj } !~ /^null$/ )
+{
+    my $howmanyA = length ( $hash{ plnmassj } );
+    my $howmanyB = length ( int( $hash{ plnmassj }) );
+    if ( $howmanyA == $howmanyB )
+    {
+        $sigdig = 0; 
+    }
+    else
+    {
+        $sigdig = $howmanyA - $howmanyB - 1;
+    }
+    $hash{ plnmasse }     = sprintf("%.${sigdig}f", $hash{ plnmassj }         * $J2Eradius);
+}
+elsif ( defined $hash{ plnmasse } && $hash{ plnmasse } !~ /^null$/ )
+{
+    my $howmanyA = length ( $hash{ plnmasse } );
+    my $howmanyB = length ( int( $hash{ plnmasse }) );
+    if ( $howmanyA == $howmanyB )
+    {
+        $sigdig = 0; 
+    }
+    else
+    {
+        $sigdig = $howmanyA - $howmanyB - 1;
+    }
+    $hash{ plnmassj }     = sprintf("%.${sigdig}f", $hash{ plnmasse }         / $J2Eradius);
+}
+else
+{
+    # leave blank 
+}
+
+# Special algorithm check 11: Calculate Earth mass upper error if given Jupiter mass upper error, and vice versa 
+if ( defined $hash{ plnmassjerr1 } && $hash{ plnmassjerr1 } !~ /^null$/ )
+{
+    my $howmanyA = length ( $hash{ plnmassjerr1 } );
+    my $howmanyB = length ( int( $hash{ plnmassjerr1 }) );
+    if ( $howmanyA == $howmanyB )
+    {
+        $sigdig = 0; 
+    }
+    else
+    {
+        $sigdig = $howmanyA - $howmanyB - 1;
+    }
+    $hash{ plnmasseerr1 } = sprintf("%.${sigdig}f", $hash{ plnmassjerr1 }     * $J2Eradius);
+}
+elsif ( defined $hash{ plnmasseerr1 } && $hash{ plnmasseerr1 } !~ /^null$/ )
+{
+    my $howmanyA = length ( $hash{ plnmasseerr1 } );
+    my $howmanyB = length ( int( $hash{ plnmasseerr1 }) );
+    if ( $howmanyA == $howmanyB )
+    {
+        $sigdig = 0; 
+    }
+    else
+    {
+        $sigdig = $howmanyA - $howmanyB - 1;
+    }
+    $hash{ plnmassjerr1 } = sprintf("%.${sigdig}f", $hash{ plnmasseerr1 }     / $J2Eradius);
+}
+else
+{
+    # leave blank 
+}
+
+# Special algorithm check 12: Calculate Earth mass lower error if given Jupiter mass lower error, and vice versa 
+if ( defined $hash{ plnmassjerr2 } && $hash{ plnmassjerr2 } !~ /^null$/ )
+{
+    my $howmanyA = length ( $hash{ plnmassjerr2 } );
+    my $howmanyB = length ( int( $hash{ plnmassjerr2 }) );
+    if ( $howmanyA == $howmanyB )
+    {
+        $sigdig = 0; 
+    }
+    else
+    {
+        $sigdig = $howmanyA - $howmanyB - 1;
+    }
+    $hash{ plnmasseerr2 } = sprintf("%.${sigdig}f", $hash{ plnmassjerr2 }     * $J2Eradius);
+}
+elsif ( defined $hash{ plnmasseerr2 } && $hash{ plnmasseerr2 } !~ /^null$/ )
+{
+    my $howmanyA = length ( $hash{ plnmasseerr2 } );
+    my $howmanyB = length ( int( $hash{ plnmasseerr2 }) );
+    if ( $howmanyA == $howmanyB )
+    {
+        $sigdig = 0; 
+    }
+    else
+    {
+        $sigdig = $howmanyA - $howmanyB - 1;
+    }
+    $hash{ plnmassjerr2 } = sprintf("%.${sigdig}f", $hash{ plnmasseerr2 }     / $J2Eradius);
+}
+else
+{
+    # leave blank 
+}
+
 
 my @messageArray; # this array will hold all the messages indicating which 
                   # parameter fields were auto-filled. 
