@@ -486,7 +486,7 @@ if ( defined $hash{ plnmassj } && $hash{ plnmassj } !~ /^null$/ )
     {
         $sigdig = $howmanyA - $howmanyB - 1;
     }
-    $hash{ plnmasse }     = sprintf("%.${sigdig}f", $hash{ plnmassj }         * $J2Eradius);
+    $hash{ plnmasse }     = sprintf("%.${sigdig}f", $hash{ plnmassj }         * $J2Emass);
 }
 elsif ( defined $hash{ plnmasse } && $hash{ plnmasse } !~ /^null$/ )
 {
@@ -500,7 +500,7 @@ elsif ( defined $hash{ plnmasse } && $hash{ plnmasse } !~ /^null$/ )
     {
         $sigdig = $howmanyA - $howmanyB - 1;
     }
-    $hash{ plnmassj }     = sprintf("%.${sigdig}f", $hash{ plnmasse }         / $J2Eradius);
+    $hash{ plnmassj }     = sprintf("%.${sigdig}f", $hash{ plnmasse }         / $J2Emass);
 }
 else
 {
@@ -520,7 +520,7 @@ if ( defined $hash{ plnmassjerr1 } && $hash{ plnmassjerr1 } !~ /^null$/ )
     {
         $sigdig = $howmanyA - $howmanyB - 1;
     }
-    $hash{ plnmasseerr1 } = sprintf("%.${sigdig}f", $hash{ plnmassjerr1 }     * $J2Eradius);
+    $hash{ plnmasseerr1 } = sprintf("%.${sigdig}f", $hash{ plnmassjerr1 }     * $J2Emass);
 }
 elsif ( defined $hash{ plnmasseerr1 } && $hash{ plnmasseerr1 } !~ /^null$/ )
 {
@@ -534,7 +534,7 @@ elsif ( defined $hash{ plnmasseerr1 } && $hash{ plnmasseerr1 } !~ /^null$/ )
     {
         $sigdig = $howmanyA - $howmanyB - 1;
     }
-    $hash{ plnmassjerr1 } = sprintf("%.${sigdig}f", $hash{ plnmasseerr1 }     / $J2Eradius);
+    $hash{ plnmassjerr1 } = sprintf("%.${sigdig}f", $hash{ plnmasseerr1 }     / $J2Emass);
 }
 else
 {
@@ -554,7 +554,7 @@ if ( defined $hash{ plnmassjerr2 } && $hash{ plnmassjerr2 } !~ /^null$/ )
     {
         $sigdig = $howmanyA - $howmanyB - 1;
     }
-    $hash{ plnmasseerr2 } = sprintf("%.${sigdig}f", $hash{ plnmassjerr2 }     * $J2Eradius);
+    $hash{ plnmasseerr2 } = sprintf("%.${sigdig}f", $hash{ plnmassjerr2 }     * $J2Emass);
 }
 elsif ( defined $hash{ plnmasseerr2 } && $hash{ plnmasseerr2 } !~ /^null$/ )
 {
@@ -568,7 +568,7 @@ elsif ( defined $hash{ plnmasseerr2 } && $hash{ plnmasseerr2 } !~ /^null$/ )
     {
         $sigdig = $howmanyA - $howmanyB - 1;
     }
-    $hash{ plnmassjerr2 } = sprintf("%.${sigdig}f", $hash{ plnmasseerr2 }     / $J2Eradius);
+    $hash{ plnmassjerr2 } = sprintf("%.${sigdig}f", $hash{ plnmasseerr2 }     / $J2Emass);
 }
 else
 {
