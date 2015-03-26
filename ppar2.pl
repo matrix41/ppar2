@@ -113,6 +113,7 @@ $hash{plninsol} = 'null'; # added 3/26/2015
 $hash{plninsolerr1} = 'null'; # added 3/26/2015 
 $hash{plninsolerr2} = 'null'; # added 3/26/2015 
 $hash{plninsollim} = 'null'; # added 3/26/2015 
+$hash{plntsystemref} = 'null'; # added 3/26/2015 
 $hash{plnblend} = 'null';
 $hash{plnrefid} = 'null';
 
