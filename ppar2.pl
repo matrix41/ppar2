@@ -10,10 +10,6 @@ my $inputkey;
 my $key;
 my $inputvalue;
 my $value;
-my $J2Emass = 317.816611; # Jupiter mass to earth masss conversion factor 
-my $J2Eradius = 11.2089807; # Jupiter radius to earth radius conversion factor 
-my $J2Sradius = 0.102792236; # Jupiter radius to solar radius conversion factor 
-my $sigdig;
 
 
 # Step 1 of 3: Initialize the hash and tie it (ie to preserve insertion order)
@@ -193,7 +189,7 @@ open (my $fh, '>', $filename) or die "Could not open file '$filename' $!\n";
 
 # Step 3d of 3: Print header information to screen 
 print   "USER:            raymond\n";
-print   "BUILD:           6.1\n";
+print   "BUILD:           6.2\n";
 printf  "DESCRIPTION:     Stellar/Planetary Parameters Additions and Updates\n";
 print   "FILETYPE:        edm\n";
 printf ("FILENAME:        %s\n", $filename);
@@ -204,7 +200,7 @@ printf  "#                                            \n";
 
 # Step 3e of 3: Print header information to file 
 print  $fh  "USER:            raymond\n";
-print  $fh  "BUILD:           6.1\n";
+print  $fh  "BUILD:           6.2\n";
 printf $fh  "DESCRIPTION:     Stellar/Planetary Parameters Additions and Updates\n";
 print  $fh  "FILETYPE:        edm\n";
 printf $fh ("FILENAME:        %s\n", $filename);
@@ -212,6 +208,13 @@ printf $fh ("DATE:            %04d-%02d-%02d %02d:%02d:%02d\n", $year+1900,$mon+
 printf $fh  "#                                    \n";
 printf $fh  "# Addition of planet parameter values\n";
 printf $fh  "#                                    \n";
+
+# Step 3f of 3: Special algorithm check. If certain specific
+# parameters are initialized (ie not null), then calculate
+# additional values for other related parameters.
+# (UPDATE -- 3/26/2015) Deleted all the Special Algorithm 
+# Checks because EDM Tool Build 6.2 will now automatically 
+# calculate the masses and radii
 
 
 my @messageArray; # this array will hold all the messages indicating which 
