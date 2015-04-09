@@ -233,7 +233,7 @@ my @messageArray; # this array will hold all the messages indicating which
 # Special autofill algorithm.  The limit flag for the corresponding parameter 
 # field in array @myNames will be auto-filled with "0" if that parameter field 
 # is not null. 
-my @myNames = ('plnorbsmax', 'plnorbper', 'plnorbtper', 'plnorblper', 'plnorbeccen', 'plnrvamp');
+my @myNames = ('plnmsinij', 'plnmsinie', 'plnmassj', 'plnmasse', 'plnradj', 'plnrade', 'plnrads', 'plnorbsmax', 'plnorbper', 'plnorbtper', 'plnorblper', 'plnorbeccen', 'plnrvamp', 'plntrandurd', 'plntrandurh', 'plninsol');
 foreach (@myNames) 
 {
 # This IF-block will check 1.) that the parameter field has been filled by a real 
@@ -248,19 +248,6 @@ foreach (@myNames)
     push( @messageArray, "$tempname was autofilled with 0" );
   }
 } 
-
-# Special autofill algorithm 2: Autofill plnmsinilim
-# (This is soooooooo stupid.  The parameter -- plnmsinij -- is an annoying parameter.  
-#  I cannot simply concatenate 'lim' to the end of it to create the limit flag for 
-#  this parameter.  The correct name for the plnmsinij limit flag is plnmsinilim, not 
-#  plnmsinijlim.  So I cannot include it in the FOREACH loop above and have to break 
-#  it out into its own separate IF block.)
-if ( $hash{ plnmsinij } !~ /^null$/ && $hash{ plnmsinilim } =~ /^null$/ )
-{
-  $hash{ plnmsinilim } = 0;
-#  print "\nplnmsinilim was autofilled with 0\n";
-  push( @messageArray, "nplnmsinilim was autofilled with 0" );
-}
 
 # Special autofill algorithm 3: Autofill plnblend  
 if ( $hash{ plnblend } =~ /^null$/ )
