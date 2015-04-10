@@ -132,6 +132,12 @@ do {
 
 
 # Step 2b of 3: Prompt the user to pick a filename
+print 'Enter entry method ( add / update / add_def / update_def ): ';
+my $addupdate = <STDIN>;
+chomp $addupdate;
+
+
+# Step 2c of 3: Prompt the user to pick a filename
 print 'Create name of output file: ';
 my $filename = <STDIN>;
 chomp $filename;
@@ -267,8 +273,8 @@ if ( $hash{ plnorbmethod } =~ /^null$/ )
 
 
 # Step 3g of 3: Now output all the planet parameters 
-print "EDMT|planet|$objectid|add|";
-print $fh "EDMT|planet|$objectid|add|";
+print "EDMT|planet|$objectid|$addupdate|";
+print $fh "EDMT|planet|$objectid|$addupdate|";
 while ( my ($key, $value) = each(%hash) ) {
     print "$key $value|";
     print $fh "$key $value|";
