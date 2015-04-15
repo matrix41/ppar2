@@ -16,6 +16,7 @@ my $value;
 # note to self: awk '{printf "$hash{%s} = \x27null\x27;\n", $2}' exop_lit_ppar.tbl
 tie my %hash, "Tie::IxHash" or die "could not tie %hash";
 
+$hash{plnletter} = 'null';
 $hash{plnorbper} = 'null';
 $hash{plnorbpererr1} = 'null';
 $hash{plnorbpererr2} = 'null';
