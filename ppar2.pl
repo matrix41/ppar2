@@ -132,16 +132,23 @@ do {
 } while ( $objectid !~ /\d\d\d\d\d\d\d\d/ );
 
 
-# Step 2b of 3: Prompt the user to pick a filename
-print 'Enter entry method ( add / update / add_def / update_def ): ';
-my $addupdate = <STDIN>;
-chomp $addupdate;
-
-
-# Step 2c of 3: Prompt the user to pick a filename
+# Step 2b of 3: Prompt the user to enter a filename
 print 'Create name of output file: ';
 my $filename = <STDIN>;
 chomp $filename;
+
+
+# Step 2c of 3: Prompt the user to enter planet letter 
+print 'Enter planet letter ( b / c / d / .... ): ';
+my $inputletter = <STDIN>;
+chomp $inputletter;
+$hash{'plnletter'} = $inputletter;
+
+
+# Step 2d of 3: Prompt the user to enter an entry method 
+print 'Enter entry method ( add / update / add_def / update_def ): ';
+my $addupdate = <STDIN>;
+chomp $addupdate;
 
 
 # Step 2c of 3: Prompt the user to enter short description of updated planet parameters
@@ -150,7 +157,7 @@ chomp $filename;
 # chomp $description;
 
 
-# Step 2d of 3: Prompt the user to enter a key and corresponding value 
+# Step 2e of 3: Prompt the user to enter a key and corresponding value 
 # (do this in an infinite WHILE-loop; type 'quit' to get out of loop)
 while (1) {
     print 'Enter key and value pair (separated by a space); enter \'quit\' to exit) => ';
