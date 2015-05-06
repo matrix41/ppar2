@@ -5,7 +5,6 @@ use warnings;
 use Tie::IxHash;
 
 # Define 
-my $objectid;
 my $inputkey;
 my $key;
 my $inputvalue;
@@ -125,11 +124,9 @@ $hash{plnrefid} = 'null';
 
 
 # Step 2a of 3: Prompt the user to enter Object ID
-do {
-    print 'Enter Object ID: ';
-    $objectid = <STDIN>;
-    chomp $objectid;
-} while ( $objectid !~ /\d\d\d\d\d\d\d\d/ );
+print 'Enter Object ID: ';
+my $objectid = <STDIN>;
+chomp $objectid;
 
 
 # Step 2b of 3: Prompt the user to enter a filename
@@ -281,10 +278,10 @@ if ( $hash{ plnorbmethod } =~ /^null$/ )
 
 
 # Step 3g of 3: Now output all the planet parameters 
-print "EDMT|planet|$objectid|$addupdate|";
+print     "EDMT|planet|$objectid|$addupdate|";
 print $fh "EDMT|planet|$objectid|$addupdate|";
 while ( my ($key, $value) = each(%hash) ) {
-    print "$key $value|";
+    print     "$key $value|";
     print $fh "$key $value|";
 }
 print     "\n"; # need to use this so the command prompt displays correctly 
