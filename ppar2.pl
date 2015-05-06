@@ -29,6 +29,7 @@ $hash{plnorbincl} = 'null';
 $hash{plnorbinclerr1} = 'null';
 $hash{plnorbinclerr2} = 'null';
 $hash{plnorbincllim} = 'null';
+$hash{plntsystemref} = 'null';
 $hash{plnorbtper} = 'null';
 $hash{plnorbtpererr1} = 'null';
 $hash{plnorbtpererr2} = 'null';
@@ -115,13 +116,12 @@ $hash{plnratror} = 'null';
 $hash{plnratrorerr1} = 'null';
 $hash{plnratrorerr2} = 'null';
 $hash{plnratrorlim} = 'null';
-$hash{plnblend} = 'null';
-$hash{plnrefid} = 'null';
 $hash{plninsol} = 'null';
 $hash{plninsolerr1} = 'null';
 $hash{plninsolerr2} = 'null';
 $hash{plninsollim} = 'null';
-$hash{plntsystemref} = 'null';
+$hash{plnblend} = 'null';
+$hash{plnrefid} = 'null';
 
 
 # Step 2a of 3: Prompt the user to enter Object ID
