@@ -271,9 +271,26 @@ if ( $hash{ plnblend } =~ /^null$/ )
 # Special autofill algorithm 4: Autofill plnorbmethod
 if ( $hash{ plnorbmethod } =~ /^null$/ )
 {
-  $hash{ plnorbmethod } = 'rv';
+  print "\n\nWARNING! plnorbmethod is null.\nEnter plnorbmethod and corresponding value => ";
+  my $str = <STDIN>;
+  chomp $str;
+  ( $inputkey, $inputvalue ) = split / /, $str;
+  $hash{ plnorbmethod } = $inputvalue;
 #  print "\nplnorbmethod was autofilled with rv\n";
-  push( @messageArray, "plnorbmethod was autofilled with rv" );
+  push( @messageArray, "plnorbmethod was autofilled with $inputvalue" );
+}
+
+
+# Special autofill algorithm 5: Autofill plntsystemref 
+if ( $hash{ plntsystemref } =~ /^null$/ )
+{
+  print "\n\nWARNING! plntsystemref is null.\nEnter plntsystemref and corresponding value => ";
+  my $str = <STDIN>;
+  chomp $str;
+   ( $inputkey, $inputvalue ) = split / /, $str;
+  $hash{ plntsystemref } = $inputvalue;
+#  print "\nplnorbmethod was autofilled with rv\n";
+  push( @messageArray, "plntsystemref was autofilled with $inputvalue" );
 }
 
 
