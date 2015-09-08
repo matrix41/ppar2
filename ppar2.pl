@@ -119,6 +119,10 @@ $hash{plninsol} = 'null';
 $hash{plninsolerr1} = 'null';
 $hash{plninsolerr2} = 'null';
 $hash{plninsollim} = 'null';
+$hash{plnconrat} = 'null';
+$hash{plnconraterr1} = 'null';
+$hash{plnconraterr2} = 'null';
+$hash{plnconratlim} = 'null';
 $hash{plnblend} = 'null';
 $hash{plnrefid} = 'null';
 
