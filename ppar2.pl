@@ -214,7 +214,7 @@ open (my $fh, '>', $filename) or die "Could not open file '$filename' $!\n";
 
 # Step 3d of 3: Print header information to screen 
 print   "USER:            raymond\n";
-print   "BUILD:           6.2\n";
+print   "BUILD:           6.3\n";
 printf  "DESCRIPTION:     Stellar/Planetary Parameters Additions and Updates\n";
 print   "FILETYPE:        edm\n";
 printf ("FILENAME:        %s\n", $filename);
@@ -225,7 +225,7 @@ printf  "#                                            \n";
 
 # Step 3e of 3: Print header information to file 
 print  $fh  "USER:            raymond\n";
-print  $fh  "BUILD:           6.2\n";
+print  $fh  "BUILD:           6.3\n";
 printf $fh  "DESCRIPTION:     Stellar/Planetary Parameters Additions and Updates\n";
 print  $fh  "FILETYPE:        edm\n";
 printf $fh ("FILENAME:        %s\n", $filename);
